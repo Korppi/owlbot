@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/services/owlbot_secrets.dart
+secrets/secrets.json
