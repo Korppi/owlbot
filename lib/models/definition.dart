@@ -1,10 +1,10 @@
 class Definition {
   final String definition;
   final String type;
-  final String example;
-  final String imageUrl;
+  final String? example;
+  final String? imageUrl;
   // emoji string (example: sun)
-  final String emoji;
+  final String? emoji;
 
   Definition._(
       this.definition, this.type, this.example, this.imageUrl, this.emoji);
