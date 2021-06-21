@@ -10,8 +10,10 @@ class SearchRow extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 50, // TODO: keep like this or is it possible to have %?
-            width: 290,
+            height: 48, // TODO: keep like this or is it possible to have %?
+            width: MediaQuery.of(context).size.width -
+                20 - // this is padding size (10+10)
+                48, // this is iconbutton size
             child: TextField(
               textCapitalization: TextCapitalization.none,
               keyboardType: TextInputType.text,
