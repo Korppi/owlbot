@@ -46,3 +46,4 @@ app.*.map.json
 /android/app/release
 lib/services/owlbot_secrets.dart
 secrets/secrets.json
+plans and stuff.txt
