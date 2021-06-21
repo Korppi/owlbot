@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:owlbot/pages/homepage/homepage.dart';
 import 'package:owlbot/utils/secrets.dart';
 
 Future<void> main() async {
@@ -10,6 +12,7 @@ Future<void> main() async {
     // if there is no token then somethings wrong and we cannot start app
     throw ('no token!');
   }
+  // debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -21,14 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Owlbot'),
-        ),
-        body: Center(
-          child: Text('Work in progress'),
-        ),
-      ),
+      home: HomePage(),
     );
   }
 }
