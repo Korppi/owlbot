@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomepageStateTearOff {
   const _$HomepageStateTearOff();
 
-  _Data call(Word word) {
-    return _Data(
+  _NoError noError(Word word) {
+    return _NoError(
       word,
     );
   }
@@ -43,16 +43,16 @@ const $HomepageState = _$HomepageStateTearOff();
 /// @nodoc
 mixin _$HomepageState {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Word word) $default, {
+  TResult when<TResult extends Object?>({
+    required TResult Function(Word word) noError,
     required TResult Function() loading,
     required TResult Function(String? message) error,
     required TResult Function() init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Word word)? $default, {
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Word word)? noError,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     TResult Function()? init,
@@ -60,16 +60,16 @@ mixin _$HomepageState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Data value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoError value) noError,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Init value) init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Data value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoError value)? noError,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Init value)? init,
@@ -96,26 +96,26 @@ class _$HomepageStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<$Res> {
-  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
-      __$DataCopyWithImpl<$Res>;
+abstract class _$NoErrorCopyWith<$Res> {
+  factory _$NoErrorCopyWith(_NoError value, $Res Function(_NoError) then) =
+      __$NoErrorCopyWithImpl<$Res>;
   $Res call({Word word});
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$HomepageStateCopyWithImpl<$Res>
-    implements _$DataCopyWith<$Res> {
-  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
-      : super(_value, (v) => _then(v as _Data));
+class __$NoErrorCopyWithImpl<$Res> extends _$HomepageStateCopyWithImpl<$Res>
+    implements _$NoErrorCopyWith<$Res> {
+  __$NoErrorCopyWithImpl(_NoError _value, $Res Function(_NoError) _then)
+      : super(_value, (v) => _then(v as _NoError));
 
   @override
-  _Data get _value => super._value as _Data;
+  _NoError get _value => super._value as _NoError;
 
   @override
   $Res call({
     Object? word = freezed,
   }) {
-    return _then(_Data(
+    return _then(_NoError(
       word == freezed
           ? _value.word
           : word // ignore: cast_nullable_to_non_nullable
@@ -126,21 +126,21 @@ class __$DataCopyWithImpl<$Res> extends _$HomepageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Data implements _Data {
-  const _$_Data(this.word);
+class _$_NoError implements _NoError {
+  const _$_NoError(this.word);
 
   @override
   final Word word;
 
   @override
   String toString() {
-    return 'HomepageState(word: $word)';
+    return 'HomepageState.noError(word: $word)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
+        (other is _NoError &&
             (identical(other.word, word) ||
                 const DeepCollectionEquality().equals(other.word, word)));
   }
@@ -151,68 +151,69 @@ class _$_Data implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<_Data> get copyWith =>
-      __$DataCopyWithImpl<_Data>(this, _$identity);
+  _$NoErrorCopyWith<_NoError> get copyWith =>
+      __$NoErrorCopyWithImpl<_NoError>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Word word) $default, {
+  TResult when<TResult extends Object?>({
+    required TResult Function(Word word) noError,
     required TResult Function() loading,
     required TResult Function(String? message) error,
     required TResult Function() init,
   }) {
-    return $default(word);
+    return noError(word);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Word word)? $default, {
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Word word)? noError,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(word);
+    if (noError != null) {
+      return noError(word);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Data value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoError value) noError,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Init value) init,
   }) {
-    return $default(this);
+    return noError(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Data value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoError value)? noError,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Init value)? init,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this);
+    if (noError != null) {
+      return noError(this);
     }
     return orElse();
   }
 }
 
-abstract class _Data implements HomepageState {
-  const factory _Data(Word word) = _$_Data;
+abstract class _NoError implements HomepageState {
+  const factory _NoError(Word word) = _$_NoError;
 
   Word get word => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
+  _$NoErrorCopyWith<_NoError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -251,8 +252,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Word word) $default, {
+  TResult when<TResult extends Object?>({
+    required TResult Function(Word word) noError,
     required TResult Function() loading,
     required TResult Function(String? message) error,
     required TResult Function() init,
@@ -262,8 +263,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Word word)? $default, {
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Word word)? noError,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     TResult Function()? init,
@@ -277,8 +278,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Data value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoError value) noError,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Init value) init,
@@ -288,8 +289,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Data value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoError value)? noError,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Init value)? init,
@@ -367,8 +368,8 @@ class _$_Error implements _Error {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Word word) $default, {
+  TResult when<TResult extends Object?>({
+    required TResult Function(Word word) noError,
     required TResult Function() loading,
     required TResult Function(String? message) error,
     required TResult Function() init,
@@ -378,8 +379,8 @@ class _$_Error implements _Error {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Word word)? $default, {
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Word word)? noError,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     TResult Function()? init,
@@ -393,8 +394,8 @@ class _$_Error implements _Error {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Data value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoError value) noError,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Init value) init,
@@ -404,8 +405,8 @@ class _$_Error implements _Error {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Data value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoError value)? noError,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Init value)? init,
@@ -462,8 +463,8 @@ class _$_Init implements _Init {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Word word) $default, {
+  TResult when<TResult extends Object?>({
+    required TResult Function(Word word) noError,
     required TResult Function() loading,
     required TResult Function(String? message) error,
     required TResult Function() init,
@@ -473,8 +474,8 @@ class _$_Init implements _Init {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Word word)? $default, {
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Word word)? noError,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     TResult Function()? init,
@@ -488,8 +489,8 @@ class _$_Init implements _Init {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Data value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoError value) noError,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Init value) init,
@@ -499,8 +500,8 @@ class _$_Init implements _Init {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Data value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoError value)? noError,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Init value)? init,
