@@ -9,6 +9,17 @@ class HomepageModel extends StateNotifier<HomepageState> {
 
   HomepageModel(this._owlBot) : super(const HomepageState.init());
 
+  Future<void> testFunction() async {
+    // testing state changes!
+    debugPrint('hello :)');
+    await Future.delayed(Duration(seconds: 5));
+    state = HomepageState.loading();
+    await Future.delayed(Duration(seconds: 5));
+    state = HomepageState.error('got any errors?');
+    await Future.delayed(Duration(seconds: 5));
+    state = HomepageState.init();
+  }
+
   Future<void> define(String? searchWord) async {
     debugPrint('lets search word $searchWord');
     await Future.delayed(Duration(seconds: 5));

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+// this hooks_riverpod import is needed for context.read() to work!
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:owlbot/pages/homepage/homepage.dart';
 
 class SearchRow extends StatelessWidget {
   const SearchRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('searchrow build');
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
@@ -25,7 +29,10 @@ class SearchRow extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              debugPrint('nothing happens!');
+              // remember! this need hooks_riverpod import to work!
+              context
+                  .read(homepageStateNotifierProvider.notifier)
+                  .testFunction();
             },
             icon: Icon(Icons.search),
           ),

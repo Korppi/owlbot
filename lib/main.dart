@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:owlbot/pages/homepage/homepage.dart';
 import 'package:owlbot/utils/secrets.dart';
 
@@ -13,12 +14,14 @@ Future<void> main() async {
     throw ('no token!');
   }
   // debugPaintSizeEnabled = true;
-  runApp(MyApp());
+  // ProviderScope is needed for riverpod to work
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    debugPrint('myapp build');
     return MaterialApp(
       title: 'Owlbot',
       theme: ThemeData(
