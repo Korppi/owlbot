@@ -4,11 +4,14 @@ import 'package:owlbot/models/word.dart';
 import 'package:owlbot/pages/homepage/homepage_state.dart';
 import 'package:owlbot/services/owlbot.dart';
 
+/// Model for homepage and model for most stuff in app.
 class HomepageModel extends StateNotifier<HomepageState> {
-  final OwlBot _owlBot;
+  final OwlBot _owlBot; // owlbot wrapper
 
   HomepageModel(this._owlBot) : super(const HomepageState.init());
 
+  // TODO: delete this function
+  /// test function, to be deleted later
   Future<void> testFunction() async {
     // testing state changes!
     debugPrint('hello :)');
@@ -20,7 +23,11 @@ class HomepageModel extends StateNotifier<HomepageState> {
     state = HomepageState.init();
   }
 
+  /// Defines word.
+  ///
+  /// Does not actually return anything but changes states
   Future<void> define(String? searchWord) async {
+    // TODO: remove Future.delayed stuff from here at some point...
     debugPrint('lets search word $searchWord');
     await Future.delayed(Duration(seconds: 5));
     if (searchWord == null || searchWord.isEmpty) {

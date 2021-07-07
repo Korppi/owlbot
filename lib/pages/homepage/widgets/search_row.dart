@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:owlbot/pages/homepage/homepage.dart';
 
+/// Search row containing textfield and iconbutton. Does not change between
+/// states.
 class SearchRow extends StatelessWidget {
   const SearchRow({Key? key}) : super(key: key);
 
@@ -32,7 +34,7 @@ class SearchRow extends StatelessWidget {
               // remember! this need hooks_riverpod import to work!
               context
                   .read(homepageStateNotifierProvider.notifier)
-                  .testFunction();
+                  .testFunction(); // TODO: add actual function
             },
             icon: Icon(Icons.search),
           ),

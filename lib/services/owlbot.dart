@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:owlbot/models/word.dart';
 import 'package:http/http.dart' as http;
 
+/// Owlbot wrapper for Owlbot API
 class OwlBot {
   final String _token;
   // API has only 1 API thing (v4/dict...) so we use it as baseurl
