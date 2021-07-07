@@ -7,6 +7,7 @@ import 'package:owlbot/pages/homepage/widgets/search_row.dart';
 import 'package:owlbot/services/owlbot.dart';
 import 'package:owlbot/utils/secrets.dart';
 
+// homepagemodel and homepagestate as statenotifier
 final homepageStateNotifierProvider =
     StateNotifierProvider<HomepageModel, HomepageState>(
   (ref) => HomepageModel(
@@ -15,8 +16,7 @@ final homepageStateNotifierProvider =
   ),
 );
 
-// change back to class HomePage extends StatelessWidget later on
-// also check hooks version of consumerwidget
+/// Only page in the app.
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -35,12 +35,20 @@ class HomePage extends ConsumerWidget {
       ),
       body: ListView(
         children: [
-          SearchRow(),
+          SearchRow(), // always the same
+          // this changes as state changes
           state.when(
             noError: (Word word) => Text('noerror'),
-            loading: () => Text('loading'),
-            error: (String? error) => Text('error'),
-            init: () => Text('init'),
+            loading: () => Center(
+              child: CircularProgressIndicator(),
+            ),
+            error: (String error) => Center(
+              child: Text(
+                '$error',
+                style: TextStyle(color: Colors.red),
+              ),
+            ), // TODO: show error
+            init: () => Container(), // nothing here
           ),
         ],
       ),
