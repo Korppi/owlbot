@@ -26,7 +26,7 @@ class _$HomepageStateTearOff {
     return const _Loading();
   }
 
-  _Error error([String? message]) {
+  _Error error(String message) {
     return _Error(
       message,
     );
@@ -46,7 +46,7 @@ mixin _$HomepageState {
   TResult when<TResult extends Object?>({
     required TResult Function(Word word) noError,
     required TResult Function() loading,
-    required TResult Function(String? message) error,
+    required TResult Function(String message) error,
     required TResult Function() init,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ mixin _$HomepageState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Word word)? noError,
     TResult Function()? loading,
-    TResult Function(String? message)? error,
+    TResult Function(String message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) =>
@@ -159,7 +159,7 @@ class _$_NoError implements _NoError {
   TResult when<TResult extends Object?>({
     required TResult Function(Word word) noError,
     required TResult Function() loading,
-    required TResult Function(String? message) error,
+    required TResult Function(String message) error,
     required TResult Function() init,
   }) {
     return noError(word);
@@ -170,7 +170,7 @@ class _$_NoError implements _NoError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Word word)? noError,
     TResult Function()? loading,
-    TResult Function(String? message)? error,
+    TResult Function(String message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) {
@@ -255,7 +255,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(Word word) noError,
     required TResult Function() loading,
-    required TResult Function(String? message) error,
+    required TResult Function(String message) error,
     required TResult Function() init,
   }) {
     return loading();
@@ -266,7 +266,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Word word)? noError,
     TResult Function()? loading,
-    TResult Function(String? message)? error,
+    TResult Function(String message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) {
@@ -311,7 +311,7 @@ abstract class _Loading implements HomepageState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
-  $Res call({String? message});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -331,7 +331,7 @@ class __$ErrorCopyWithImpl<$Res> extends _$HomepageStateCopyWithImpl<$Res>
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -339,10 +339,10 @@ class __$ErrorCopyWithImpl<$Res> extends _$HomepageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error([this.message]);
+  const _$_Error(this.message);
 
   @override
-  final String? message;
+  final String message;
 
   @override
   String toString() {
@@ -371,7 +371,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function(Word word) noError,
     required TResult Function() loading,
-    required TResult Function(String? message) error,
+    required TResult Function(String message) error,
     required TResult Function() init,
   }) {
     return error(message);
@@ -382,7 +382,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Word word)? noError,
     TResult Function()? loading,
-    TResult Function(String? message)? error,
+    TResult Function(String message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) {
@@ -420,9 +420,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements HomepageState {
-  const factory _Error([String? message]) = _$_Error;
+  const factory _Error(String message) = _$_Error;
 
-  String? get message => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
@@ -466,7 +466,7 @@ class _$_Init implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function(Word word) noError,
     required TResult Function() loading,
-    required TResult Function(String? message) error,
+    required TResult Function(String message) error,
     required TResult Function() init,
   }) {
     return init();
@@ -477,7 +477,7 @@ class _$_Init implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Word word)? noError,
     TResult Function()? loading,
-    TResult Function(String? message)? error,
+    TResult Function(String message)? error,
     TResult Function()? init,
     required TResult orElse(),
   }) {
