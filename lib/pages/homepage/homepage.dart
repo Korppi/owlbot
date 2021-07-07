@@ -24,15 +24,11 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     debugPrint('homepage build');
     final state = watch(homepageStateNotifierProvider);
-    return state.when(
+    /*return state.when(
         noError: (Word word) => Text('no error'),
         loading: () => Text('loading!'),
         error: (errorr) => Text(errorr!), // see the ! this is for testing now
-        init: () => buildScaffold());
-  }
-
-  buildScaffold() {
-    debugPrint('scaffold build at homepage init state build');
+        init: () => buildScaffold());*/
     return Scaffold(
       appBar: AppBar(
         title: Text('Owlbot'),
@@ -40,6 +36,12 @@ class HomePage extends ConsumerWidget {
       body: ListView(
         children: [
           SearchRow(),
+          state.when(
+            noError: (Word word) => Text('noerror'),
+            loading: () => Text('loading'),
+            error: (String? error) => Text('error'),
+            init: () => Text('init'),
+          ),
         ],
       ),
     );
