@@ -7,6 +7,6 @@ part 'homepage_state.freezed.dart';
 class HomepageState with _$HomepageState {
   const factory HomepageState.noError(Word word) = _NoError;
   const factory HomepageState.loading() = _Loading;
-  const factory HomepageState.error([String? message]) = _Error;
+  const factory HomepageState.error(String message) = _Error;
   const factory HomepageState.init() = _Init;
 }
