@@ -10,33 +10,15 @@ class HomepageModel extends StateNotifier<HomepageState> {
 
   HomepageModel(this._owlBot) : super(const HomepageState.init());
 
-  // TODO: delete this function
-  /// test function, to be deleted later
-  Future<void> testFunction() async {
-    // testing state changes!
-    debugPrint('hello :)');
-    await Future.delayed(Duration(seconds: 5));
-    state = HomepageState.loading();
-    await Future.delayed(Duration(seconds: 5));
-    state = HomepageState.error('got any errors?');
-    await Future.delayed(Duration(seconds: 5));
-    state = HomepageState.init();
-  }
-
-  /// Defines word.
-  ///
-  /// Does not actually return anything but changes states
+  /// Defines word
   Future<void> define(String? searchWord) async {
-    // TODO: remove Future.delayed stuff from here at some point...
     debugPrint('lets search word $searchWord');
-    await Future.delayed(Duration(seconds: 5));
     if (searchWord == null || searchWord.isEmpty) {
       debugPrint('null or empty, so state will be init');
       state = HomepageState.init();
     } else {
       debugPrint('not empty and not null, so state will be loading');
       state = HomepageState.loading();
-      await Future.delayed(Duration(seconds: 5));
       debugPrint('lets call api');
       Word? word = await _owlBot.define(searchWord);
       if (word == null) {
