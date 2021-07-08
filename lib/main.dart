@@ -5,7 +5,7 @@ import 'package:owlbot/pages/homepage/homepage.dart';
 import 'package:owlbot/utils/secrets.dart';
 
 Future<void> main() async {
-  // because main is async we need this line here
+  // because main has stuff going on we need this line here and
   WidgetsFlutterBinding.ensureInitialized();
   // init Secrects. Reads json and gets token for Owlbot API
   await Secrets.init();
