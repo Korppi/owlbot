@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:owlbot/models/word.dart';
 import 'package:owlbot/pages/homepage/homepage_model.dart';
@@ -17,18 +18,13 @@ final homepageStateNotifierProvider =
 );
 
 /// Only page in the app.
-class HomePage extends ConsumerWidget {
+class HomePage extends HookWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context) {
     debugPrint('homepage build');
-    final state = watch(homepageStateNotifierProvider);
-    /*return state.when(
-        noError: (Word word) => Text('no error'),
-        loading: () => Text('loading!'),
-        error: (errorr) => Text(errorr!), // see the ! this is for testing now
-        init: () => buildScaffold());*/
+    final state = useProvider(homepageStateNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('Owlbot'),
