@@ -5,6 +5,7 @@ import 'package:owlbot/models/word.dart';
 import 'package:owlbot/pages/homepage/homepage_model.dart';
 import 'package:owlbot/pages/homepage/homepage_state.dart';
 import 'package:owlbot/pages/homepage/widgets/search_row.dart';
+import 'package:owlbot/pages/homepage/widgets/word_tabs.dart';
 import 'package:owlbot/services/owlbot.dart';
 import 'package:owlbot/utils/secrets.dart';
 
@@ -29,14 +30,16 @@ class HomePage extends HookWidget {
       appBar: AppBar(
         title: Text('Owlbot'),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          SearchRow(), // always the same
-          // this changes as state changes
+          SearchRow(),
           state.when(
-            noError: (Word word) => Text('noerror'),
-            loading: () => Center(
-              child: CircularProgressIndicator(),
+            noError: (Word word) => WordTabs(word),
+            loading: () => Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
             error: (String error) => Center(
               child: Text(
