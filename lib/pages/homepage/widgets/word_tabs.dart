@@ -109,8 +109,10 @@ class WordTabs extends HookWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Pronunciation'),
-                              Text(_word.pronunciation ??
-                                  ''), // TODO: check this... i think this shows weird characters (example: wrinkles)
+                              Text(_word.pronunciation != null
+                                  ? utf8.decode(
+                                      _word.pronunciation!.runes.toList())
+                                  : ''),
                             ],
                           ),
                         ],
