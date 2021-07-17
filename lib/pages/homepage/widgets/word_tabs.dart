@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:owlbot/models/definition.dart';
@@ -180,6 +182,14 @@ class WordTabs extends HookWidget {
                 indent: 40,
                 endIndent: 200,
               ),
+              def.emoji != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(utf8.decode(def.emoji!.runes.toList())),
+                      ],
+                    )
+                  : Container(),
             ],
           ),
         ),
