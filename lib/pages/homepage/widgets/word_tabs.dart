@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:owlbot/models/definition.dart';
 import 'package:owlbot/models/word.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WordTabs extends HookWidget {
   final Word _word;
@@ -191,8 +192,10 @@ class WordTabs extends HookWidget {
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: def.imageUrl != null
           ? GestureDetector(
-              onTap: () =>
-                  debugPrint('open url to browser!'), // TODO: implement this
+              onTap: () async => await canLaunch(def.imageUrl!)
+                  ? await launch(def.imageUrl!)
+                  : debugPrint(
+                      'cannot open url!'), // ? show some error to user?
               child: CircleAvatar(
                 radius: 70,
                 backgroundImage: NetworkImage(def.imageUrl!),
