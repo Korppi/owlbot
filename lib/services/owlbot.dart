@@ -17,7 +17,7 @@ class OwlBot {
   Future<Word?> define(String word) async {
     Uri url = Uri.parse(_baseurl + word);
     http.Response response =
-        await http.get(url, headers: {'Authorization': 'Token ' + _token});
+        await client.get(url, headers: {'Authorization': 'Token ' + _token});
     if (response.statusCode == 200) {
       // everything OK, create Word object and return it
       return Word.fromJson(jsonDecode(response.body));
