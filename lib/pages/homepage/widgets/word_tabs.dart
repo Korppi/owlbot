@@ -23,7 +23,7 @@ class WordTabs extends HookWidget {
           _buildTabBalls(pageController, tabController),
           SizedBox(
             width: 200,
-            height: 450,
+            height: 660,
             child: TabBarView(
               controller: tabController,
               children: _buildTabs(),
@@ -125,7 +125,7 @@ class WordTabs extends HookWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     left:
-                        32.0), // TODO: this might not work with all devices...
+                        50.0), // TODO: this might not work with all devices...
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -150,7 +150,7 @@ class WordTabs extends HookWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     left:
-                        32.0), // TODO: this might not work with all devices...
+                        50.0), // TODO: this might not work with all devices...
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -178,7 +178,10 @@ class WordTabs extends HookWidget {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(utf8.decode(def.emoji!.runes.toList())),
+                        Text(
+                          utf8.decode(def.emoji!.runes.toList()),
+                          style: TextStyle(fontSize: 48),
+                        ),
                       ],
                     )
                   : Container(),
@@ -191,7 +194,7 @@ class WordTabs extends HookWidget {
 
   _buildImage(Definition def) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
       child: def.imageUrl != null
           ? GestureDetector(
               onTap: () async => await canLaunch(def.imageUrl!)
@@ -199,13 +202,13 @@ class WordTabs extends HookWidget {
                   : debugPrint(
                       'cannot open url!'), // ? show some error to user?
               child: CircleAvatar(
-                radius: 70,
+                radius: 120,
                 backgroundImage: NetworkImage(def.imageUrl!),
               ),
             )
           : Icon(
               Icons.flutter_dash,
-              size: 140,
+              size: 240,
             ),
     );
   }
