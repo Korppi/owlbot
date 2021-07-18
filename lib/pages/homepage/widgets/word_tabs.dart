@@ -17,8 +17,8 @@ class WordTabs extends HookWidget {
         initialLength: _word.definitions.length,
         vsync: useSingleTickerProvider());
     return Expanded(
+      // TODO: support for multiple screen sizes...
       child: ListView(
-        // TODO: keep as it is or change column here?
         children: [
           _buildTabBalls(pageController, tabController),
           SizedBox(
@@ -123,9 +123,7 @@ class WordTabs extends HookWidget {
               ),
               _buildDivider(),
               Padding(
-                padding: const EdgeInsets.only(
-                    left:
-                        50.0), // TODO: this might not work with all devices...
+                padding: const EdgeInsets.only(left: 50.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -140,7 +138,7 @@ class WordTabs extends HookWidget {
                         Container(
                           width: 250,
                           child: Text(def.example ?? ''),
-                        ), // TODO: check long examples (owl)
+                        ),
                       ],
                     ),
                   ],
@@ -148,9 +146,7 @@ class WordTabs extends HookWidget {
               ),
               _buildDivider(),
               Padding(
-                padding: const EdgeInsets.only(
-                    left:
-                        50.0), // TODO: this might not work with all devices...
+                padding: const EdgeInsets.only(left: 50.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -167,7 +163,7 @@ class WordTabs extends HookWidget {
                           child: Text(
                             def.definition,
                           ),
-                        ), // TODO: check long examples (owl)
+                        ),
                       ],
                     ),
                   ],
