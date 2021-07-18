@@ -23,7 +23,7 @@ class WordTabs extends HookWidget {
           _buildTabBalls(pageController, tabController),
           SizedBox(
             width: 200,
-            height: 395,
+            height: 450,
             child: TabBarView(
               controller: tabController,
               children: _buildTabs(),
@@ -121,12 +121,7 @@ class WordTabs extends HookWidget {
                   ),
                 ],
               ),
-              Divider(
-                height: 32,
-                thickness: 2,
-                indent: 40,
-                endIndent: 200,
-              ),
+              _buildDivider(),
               Padding(
                 padding: const EdgeInsets.only(
                     left:
@@ -142,19 +137,16 @@ class WordTabs extends HookWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Example'),
-                        Text(def.example ??
-                            ''), // TODO: check long examples (owl)
+                        Container(
+                          width: 250,
+                          child: Text(def.example ?? ''),
+                        ), // TODO: check long examples (owl)
                       ],
                     ),
                   ],
                 ),
               ),
-              Divider(
-                height: 32,
-                thickness: 2,
-                indent: 40,
-                endIndent: 200,
-              ),
+              _buildDivider(),
               Padding(
                 padding: const EdgeInsets.only(
                     left:
@@ -170,20 +162,18 @@ class WordTabs extends HookWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Definition'),
-                        Text(
-                          def.definition,
+                        Container(
+                          width: 250,
+                          child: Text(
+                            def.definition,
+                          ),
                         ), // TODO: check long examples (owl)
                       ],
                     ),
                   ],
                 ),
               ),
-              Divider(
-                height: 32,
-                thickness: 2,
-                indent: 40,
-                endIndent: 200,
-              ),
+              _buildDivider(),
               def.emoji != null
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -217,6 +207,15 @@ class WordTabs extends HookWidget {
               Icons.flutter_dash,
               size: 140,
             ),
+    );
+  }
+
+  _buildDivider() {
+    return Divider(
+      height: 32,
+      thickness: 2,
+      indent: 40,
+      endIndent: 200,
     );
   }
 }
