@@ -12,7 +12,6 @@ class SearchRow extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('searchrow build');
     final searchTextController = useTextEditingController();
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -44,7 +43,7 @@ class SearchRow extends HookWidget {
   }
 
   _define(BuildContext context, TextEditingController searchTextController) {
-    FocusScope.of(context).unfocus();
+    FocusScope.of(context).unfocus(); // closes keyboard
     context
         .read(homepageStateNotifierProvider.notifier)
         .define(searchTextController.text);
