@@ -6,29 +6,35 @@ import 'package:owlbot/models/definition.dart';
 import 'package:owlbot/models/word.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// TODO: rename to WordTabBalls
 class WordTabs extends HookWidget {
   final Word _word;
-  const WordTabs(this._word, {Key? key}) : super(key: key);
+  final _pageController;
+  final _tabController;
+  const WordTabs(this._word, this._pageController, this._tabController,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final pageController = usePageController();
+    /*final pageController = usePageController();
     final tabController = useTabController(
         initialLength: _word.definitions.length,
-        vsync: useSingleTickerProvider());
+        vsync: useSingleTickerProvider());*/
     return Expanded(
-      // TODO: support for multiple screen sizes...
       child: ListView(
+        // TODO: remove this expanded listview stuff
         children: [
-          _buildTabBalls(pageController, tabController),
-          SizedBox(
+          _buildTabBalls(_pageController, _tabController),
+          // TODO: this TabBarView should be its own HookWidget with expanded
+          /*SizedBox(
             width: 200,
             height: 660,
             child: TabBarView(
-              controller: tabController,
+              controller: _tabController,
               children: _buildTabs(),
             ),
-          ),
+          ),*/
         ],
       ),
     );

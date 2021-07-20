@@ -26,6 +26,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     debugPrint('homepage build');
     final state = useProvider(homepageStateNotifierProvider);
+
     const double padding = 10;
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +36,7 @@ class HomePage extends HookWidget {
         children: [
           SearchRow(),
           state.when(
-            noError: (Word word) => WordTabs(word),
+            noError: (Word word) => _buildTabs(word),
             loading: () => Padding(
               padding: const EdgeInsets.only(top: padding),
               child: Center(
@@ -47,11 +48,19 @@ class HomePage extends HookWidget {
                 '$error',
                 style: TextStyle(color: Colors.red),
               ),
-            ), // TODO: show error
+            ), // TODO: show error somehow better?
             init: () => Container(), // nothing here
           ),
         ],
       ),
     );
+  }
+
+  _buildTabs(Word word) {
+    final pageController = usePageController();
+    final tabController = useTabController(
+        initialLength: word.definitions.length,
+        vsync: useSingleTickerProvider());
+    return WordTabs(word, pageController, tabController);
   }
 }
