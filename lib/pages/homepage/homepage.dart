@@ -26,6 +26,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     debugPrint('homepage build');
     final state = useProvider(homepageStateNotifierProvider);
+    const double padding = 10;
     return Scaffold(
       appBar: AppBar(
         title: Text('Owlbot'),
@@ -36,7 +37,7 @@ class HomePage extends HookWidget {
           state.when(
             noError: (Word word) => WordTabs(word),
             loading: () => Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: padding),
               child: Center(
                 child: CircularProgressIndicator(),
               ),
