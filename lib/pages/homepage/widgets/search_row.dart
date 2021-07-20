@@ -13,15 +13,21 @@ class SearchRow extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final searchTextController = useTextEditingController();
+    // ? some const stuff here... other possible solutions: static const in class or single constants.dart file?
+    const double sizedBoxHeight = 48;
+    const int iconButtonSize = 48;
+    const double paddingSize = 10.0;
+    final int sizedBoxWidth = iconButtonSize +
+        (2 *
+            paddingSize
+                .toInt()); // not actually the width but the width to be removed (padding and iconsize)
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(paddingSize),
       child: Row(
         children: [
           SizedBox(
-            height: 48,
-            width: MediaQuery.of(context).size.width -
-                20 - // this is padding size (10+10)
-                48, // this is iconbutton size
+            height: sizedBoxHeight,
+            width: MediaQuery.of(context).size.width - sizedBoxWidth,
             child: TextField(
               controller: searchTextController,
               textCapitalization: TextCapitalization.none,
