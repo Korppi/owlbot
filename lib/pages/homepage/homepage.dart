@@ -6,6 +6,7 @@ import 'package:owlbot/pages/homepage/homepage_model.dart';
 import 'package:owlbot/pages/homepage/homepage_state.dart';
 import 'package:owlbot/pages/homepage/widgets/search_row.dart';
 import 'package:owlbot/pages/homepage/widgets/word_tab_balls.dart';
+import 'package:owlbot/pages/homepage/widgets/word_tabs.dart';
 import 'package:owlbot/services/owlbot.dart';
 import 'package:owlbot/utils/secrets.dart';
 
@@ -60,6 +61,16 @@ class HomePage extends HookWidget {
     final tabController = useTabController(
         initialLength: word.definitions.length,
         vsync: useSingleTickerProvider());
-    return WordTabBalls(word, pageController, tabController);
+    List<Widget> widgets = [];
+    widgets.add(WordTabBalls(word, pageController, tabController));
+    widgets.add(WordTabs(word, pageController, tabController));
+    return Expanded(
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: widgets,
+        ),
+      ),
+    );
   }
 }
