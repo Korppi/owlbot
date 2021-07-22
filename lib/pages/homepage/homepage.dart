@@ -5,7 +5,7 @@ import 'package:owlbot/models/word.dart';
 import 'package:owlbot/pages/homepage/homepage_model.dart';
 import 'package:owlbot/pages/homepage/homepage_state.dart';
 import 'package:owlbot/pages/homepage/widgets/search_row.dart';
-import 'package:owlbot/pages/homepage/widgets/word_tabs.dart';
+import 'package:owlbot/pages/homepage/widgets/word_tab_balls.dart';
 import 'package:owlbot/services/owlbot.dart';
 import 'package:owlbot/utils/secrets.dart';
 
@@ -13,8 +13,7 @@ import 'package:owlbot/utils/secrets.dart';
 final homepageStateNotifierProvider =
     StateNotifierProvider<HomepageModel, HomepageState>(
   (ref) => HomepageModel(
-    // TODO: check this later, should only be getToken() without '?? ""' stuff
-    OwlBot(Secrets.getToken() ?? ''),
+    OwlBot(Secrets.getToken()!), // in main.dart there is null check for token.
   ),
 );
 
@@ -27,7 +26,7 @@ class HomePage extends HookWidget {
     debugPrint('homepage build');
     final state = useProvider(homepageStateNotifierProvider);
 
-    const double padding = 10;
+    const double padding = 10; // for loading states circular thing...
     return Scaffold(
       appBar: AppBar(
         title: Text('Owlbot'),
@@ -48,7 +47,7 @@ class HomePage extends HookWidget {
                 '$error',
                 style: TextStyle(color: Colors.red),
               ),
-            ), // TODO: show error somehow better?
+            ),
             init: () => Container(), // nothing here
           ),
         ],
@@ -61,6 +60,6 @@ class HomePage extends HookWidget {
     final tabController = useTabController(
         initialLength: word.definitions.length,
         vsync: useSingleTickerProvider());
-    return WordTabs(word, pageController, tabController);
+    return WordTabBalls(word, pageController, tabController);
   }
 }
