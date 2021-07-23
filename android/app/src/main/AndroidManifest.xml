@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fi.teppokavander.owlbot">
+    <uses-permission android:name="android.permission.INTERNET" /> 
    <application
         android:label="owlbot"
         android:icon="@mipmap/launcher_icon">
