@@ -13,7 +13,6 @@ Future<void> main() async {
     // if there is no token then somethings wrong and we cannot start app
     throw ('no token!');
   }
-  // debugPaintSizeEnabled = true;
   // ProviderScope is needed for riverpod to work
   runApp(ProviderScope(child: MyApp()));
 }
@@ -21,7 +20,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint('myapp build');
     return MaterialApp(
       title: 'Owlbot',
       theme: ThemeData(

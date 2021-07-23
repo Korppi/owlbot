@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:owlbot/models/word.dart';
 
+/// This widget builds only the tab balls
 class WordTabBalls extends HookWidget {
-  final Word _word;
   final _pageController;
   final _tabController;
-  const WordTabBalls(this._word, this._pageController, this._tabController,
-      {Key? key})
+  const WordTabBalls(this._pageController, this._tabController, {Key? key})
       : super(key: key);
 
   @override
