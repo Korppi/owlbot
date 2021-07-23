@@ -41,34 +41,112 @@ class WordTabs extends HookWidget {
 
   _buildDefinitionCardNew(Definition def) {
     return Card(
+      margin: EdgeInsets.all(8),
       elevation: 2,
       child: ListView(
         children: [
           _buildImage(def),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('data'),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('data'),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          _buildWordAndPronunciationRow(def),
+          _buildDivider(),
+          _buildExampleRow(def),
+          _buildDivider(),
+          _builDefinitionRow(def),
+          _buildDivider(),
         ],
       ),
     );
+  }
+
+  _buildWordAndPronunciationRow(Definition def) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(Icons.text_fields),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Word'),
+                      Text('${_word.word} (${def.type})'),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(Icons.record_voice_over),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pronunciation'),
+                      Text(_word.pronunciation != null
+                          ? utf8.decode(_word.pronunciation!.runes.toList())
+                          : ''),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  _buildExampleRow(Definition def) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.format_quote),
+            ),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Example'),
+            Container(
+              width: 250,
+              child: Text(def.example ?? ''),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  _builDefinitionRow(Definition def) {
+    return Container();
   }
 
   _buildDefinitionCard(Definition def) {
@@ -196,7 +274,7 @@ class WordTabs extends HookWidget {
 
   _buildImage(Definition def) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: def.imageUrl != null
           ? GestureDetector(
               onTap: () async => await canLaunch(def.imageUrl!)
@@ -220,11 +298,14 @@ class WordTabs extends HookWidget {
   }
 
   _buildDivider() {
-    return Divider(
-      height: 32,
-      thickness: 2,
-      indent: 40,
-      endIndent: 200,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Divider(
+        height: 8,
+        thickness: 2,
+        indent: 10,
+        endIndent: 250,
+      ),
     );
   }
 }
