@@ -69,7 +69,10 @@ class WordTabs extends HookWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.text_fields),
+                        child: Icon(
+                          Icons.text_fields,
+                          color: Colors.green,
+                        ),
                       ),
                     ],
                   ),
@@ -101,7 +104,10 @@ class WordTabs extends HookWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.record_voice_over),
+                        child: Icon(
+                          Icons.record_voice_over,
+                          color: Colors.green,
+                        ),
                       ),
                     ],
                   ),
@@ -137,7 +143,10 @@ class WordTabs extends HookWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.format_quote),
+              child: Icon(
+                Icons.format_quote,
+                color: Colors.green,
+              ),
             ),
           ],
         ),
@@ -169,7 +178,10 @@ class WordTabs extends HookWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.description),
+              child: Icon(
+                Icons.description,
+                color: Colors.green,
+              ),
             )
           ],
         ),
@@ -233,6 +245,7 @@ class WordTabs extends HookWidget {
           : Icon(
               Icons.flutter_dash,
               size: 140,
+              color: Colors.green,
             ),
     );
   }
@@ -245,6 +258,7 @@ class WordTabs extends HookWidget {
         thickness: 2,
         indent: 10,
         endIndent: 250,
+        color: Colors.green,
       ),
     );
   }
