@@ -5,6 +5,7 @@ import 'package:owlbot/models/word.dart';
 import 'package:owlbot/pages/homepage/homepage_model.dart';
 import 'package:owlbot/pages/homepage/homepage_state.dart';
 import 'package:owlbot/pages/homepage/widgets/search_row.dart';
+import 'package:owlbot/pages/homepage/widgets/word_tab_balls.dart';
 import 'package:owlbot/pages/homepage/widgets/word_tabs.dart';
 import 'package:owlbot/services/owlbot.dart';
 import 'package:owlbot/utils/secrets.dart';
@@ -13,8 +14,7 @@ import 'package:owlbot/utils/secrets.dart';
 final homepageStateNotifierProvider =
     StateNotifierProvider<HomepageModel, HomepageState>(
   (ref) => HomepageModel(
-    // TODO: check this later, should only be getToken() without '?? ""' stuff
-    OwlBot(Secrets.getToken() ?? ''),
+    OwlBot(Secrets.getToken()!), // in main.dart there is null check for token.
   ),
 );
 
@@ -26,6 +26,8 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     debugPrint('homepage build');
     final state = useProvider(homepageStateNotifierProvider);
+
+    const double padding = 10; // for loading states circular thing...
     return Scaffold(
       appBar: AppBar(
         title: Text('Owlbot'),
@@ -34,9 +36,9 @@ class HomePage extends HookWidget {
         children: [
           SearchRow(),
           state.when(
-            noError: (Word word) => WordTabs(word),
+            noError: (Word word) => _buildTabs(word),
             loading: () => Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: padding),
               child: Center(
                 child: CircularProgressIndicator(),
               ),
@@ -46,10 +48,28 @@ class HomePage extends HookWidget {
                 '$error',
                 style: TextStyle(color: Colors.red),
               ),
-            ), // TODO: show error
+            ),
             init: () => Container(), // nothing here
           ),
         ],
+      ),
+    );
+  }
+
+  _buildTabs(Word word) {
+    final pageController = usePageController();
+    final tabController = useTabController(
+        initialLength: word.definitions.length,
+        vsync: useSingleTickerProvider());
+    List<Widget> widgets = [];
+    widgets.add(WordTabBalls(word, pageController, tabController));
+    widgets.add(WordTabs(word, tabController));
+    return Expanded(
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: widgets,
+        ),
       ),
     );
   }
