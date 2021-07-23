@@ -4,8 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:owlbot/pages/homepage/homepage.dart';
 
-/// Search row containing textfield and iconbutton. Does not change between
-/// states.
+/// Search row containing textfield and iconbutton. Does not change between states.
 class SearchRow extends HookWidget {
   // hookwidget allows us to have useTextEditingController
   const SearchRow({Key? key}) : super(key: key);

@@ -7,6 +7,7 @@ import 'package:owlbot/models/definition.dart';
 import 'package:owlbot/models/word.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// This widget builds the actual tabs and their content
 class WordTabs extends HookWidget {
   final Word _word;
   final TabController _tabController;
