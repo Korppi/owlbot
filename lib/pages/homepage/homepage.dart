@@ -63,7 +63,7 @@ class HomePage extends HookWidget {
         vsync: useSingleTickerProvider());
     List<Widget> widgets = [];
     widgets.add(WordTabBalls(word, pageController, tabController));
-    widgets.add(WordTabs(word, pageController, tabController));
+    widgets.add(WordTabs(word, tabController));
     return Expanded(
       child: Container(
         child: Column(
