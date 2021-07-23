@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
       title: 'Owlbot',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: Colors.green),
+        ),
       ),
       home: HomePage(),
     );
