@@ -24,7 +24,6 @@ class HomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('homepage build');
     final state = useProvider(homepageStateNotifierProvider);
 
     const double padding = 10; // for loading states circular thing...
@@ -62,7 +61,7 @@ class HomePage extends HookWidget {
         initialLength: word.definitions.length,
         vsync: useSingleTickerProvider());
     List<Widget> widgets = [];
-    widgets.add(WordTabBalls(word, pageController, tabController));
+    widgets.add(WordTabBalls(pageController, tabController));
     widgets.add(WordTabs(word, tabController));
     return Expanded(
       child: Container(
