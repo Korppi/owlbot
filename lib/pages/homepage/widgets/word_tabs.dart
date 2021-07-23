@@ -9,12 +9,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class WordTabs extends HookWidget {
   final Word _word;
-  final PageController _pageController;
   final TabController _tabController;
 
-  const WordTabs(this._word, this._pageController, this._tabController,
-      {Key? key})
-      : super(key: key);
+  const WordTabs(this._word, this._tabController, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class WordTabs extends HookWidget {
         padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
         child: Container(
           child: TabBarView(
-            children: _buildTabs(),
+            children: _buildTabs(context),
             controller: _tabController,
           ),
         ),
@@ -31,33 +28,34 @@ class WordTabs extends HookWidget {
     );
   }
 
-  _buildTabs() {
+  _buildTabs(BuildContext context) {
     List<Widget> defcards = [];
     _word.definitions.forEach((def) {
-      defcards.add(_buildDefinitionCardNew(def));
+      defcards.add(_buildDefinitionCardNew(context, def));
     });
     return defcards;
   }
 
-  _buildDefinitionCardNew(Definition def) {
+  _buildDefinitionCardNew(BuildContext context, Definition def) {
     return Card(
       margin: EdgeInsets.all(8),
       elevation: 2,
       child: ListView(
         children: [
           _buildImage(def),
-          _buildWordAndPronunciationRow(def),
+          _buildWordAndPronunciationRow(context, def),
           _buildDivider(),
-          _buildExampleRow(def),
+          _buildExampleRow(context, def),
           _buildDivider(),
-          _builDefinitionRow(def),
+          _builDefinitionRow(context, def),
           _buildDivider(),
+          _buildEmoji(def),
         ],
       ),
     );
   }
 
-  _buildWordAndPronunciationRow(Definition def) {
+  _buildWordAndPronunciationRow(BuildContext context, Definition def) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -78,7 +76,13 @@ class WordTabs extends HookWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Word'),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(
+                          'Word',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ),
                       Text('${_word.word} (${def.type})'),
                     ],
                   ),
@@ -104,7 +108,13 @@ class WordTabs extends HookWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pronunciation'),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(
+                          'Pronunciation',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ),
                       Text(_word.pronunciation != null
                           ? utf8.decode(_word.pronunciation!.runes.toList())
                           : ''),
@@ -119,7 +129,7 @@ class WordTabs extends HookWidget {
     );
   }
 
-  _buildExampleRow(Definition def) {
+  _buildExampleRow(BuildContext context, Definition def) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -134,7 +144,13 @@ class WordTabs extends HookWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Example'),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                'Example',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
             Container(
               width: 250,
               child: Text(def.example ?? ''),
@@ -145,131 +161,55 @@ class WordTabs extends HookWidget {
     );
   }
 
-  _builDefinitionRow(Definition def) {
-    return Container();
+  _builDefinitionRow(BuildContext context, Definition def) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.description),
+            )
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                'Definition',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
+            Container(
+              width: 250,
+              child: Text(
+                def.definition,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
-  _buildDefinitionCard(Definition def) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-      child: Card(
-        color: Colors.green[200],
-        child: Container(
-          child: Column(
-            children: [
-              _buildImage(def),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.title),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Word'), // TODO: styles
-                              Text(_word.word + ' (' + def.type + ')'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.record_voice_over),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Pronunciation'),
-                              Text(_word.pronunciation != null
-                                  ? utf8.decode(
-                                      _word.pronunciation!.runes.toList())
-                                  : ''),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              _buildDivider(),
-              Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Icon(Icons.format_quote),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Example'),
-                        Container(
-                          width: 250,
-                          child: Text(def.example ?? ''),
-                        ),
-                      ],
-                    ),
-                  ],
+  _buildEmoji(Definition def) {
+    return def.emoji != null
+        ? Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  utf8.decode(def.emoji!.runes.toList()),
+                  style: TextStyle(fontSize: 48),
                 ),
-              ),
-              _buildDivider(),
-              Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Icon(Icons.format_quote),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Definition'),
-                        Container(
-                          width: 250,
-                          child: Text(
-                            def.definition,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              _buildDivider(),
-              def.emoji != null
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          utf8.decode(def.emoji!.runes.toList()),
-                          style: TextStyle(fontSize: 48),
-                        ),
-                      ],
-                    )
-                  : Container(),
-            ],
-          ),
-        ),
-      ),
-    );
+              ],
+            ),
+          )
+        : Container();
   }
 
   _buildImage(Definition def) {
