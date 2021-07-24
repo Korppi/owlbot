@@ -12,4 +12,4 @@ You are going to need your own token which you can register at [https://owlbot.i
 - light/dark mode
 
 ## Super secret stuff!
-In the app there is nothing telling this but if word has image (for example, word "cat" has image) then clicking the image will open the image in the browser.
+If word definition has image, try touching it!
