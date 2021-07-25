@@ -4,12 +4,9 @@ App that uses Owlbot API to define words.
 
 This is mainly a practise project to learn about Flutter and Dart. I copied some of the looks from [another owlbot app](https://play.google.com/store/apps/details?id=de.bergerapps.owlbot).
 
-## Installation and building
-You are going to need your own token which you can register at [https://owlbot.info/](https://owlbot.info/). Then you have to add "secrets" folder at project root and add file "secrets.json" with format like this: `{"token":"your token"}`. You also might need to run in your terminal a command `flutter pub run build_runner build -delete-conflicting-outputs`.
-
 ## Possible future stuff to do
 - widget and integration testing
 - light/dark mode
 
-## Super secret stuff!
-If word definition has image, try touching it!
+## Super secret stuff! (not really...)
+If word definition has image, try touching it! It opens it in the browser.
