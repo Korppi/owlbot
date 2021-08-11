@@ -9,4 +9,4 @@ This is mainly a practise project to learn about Flutter and Dart. I copied some
 - light/dark mode
 
 ## Super secret stuff! (not really...)
-If word definition has image, try touching it! It opens it in the browser.
+If word definition has an image, try touching it! It opens the image in the browser.
